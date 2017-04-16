@@ -16,6 +16,14 @@
  </head>
 
  <body>
+First name:<br>
+  <input type="text" name="firstname" value="Mickey">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastname" value="Mouse">
+  <br><br>
+  <input type="submit" value="Submit">
+ 
  <?php 
 	 //test
 	 echo "<p>Hello World</p>"; 
@@ -34,6 +42,8 @@
 		}
 		// // Close the Oracle connection
 		// oci_close($conn);
+
+
 
 	echo "<p>Printing out employees table</p>";	
 
