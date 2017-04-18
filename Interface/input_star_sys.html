@@ -1,0 +1,24 @@
+<!-- input form for new solar system/star -->
+<!-- user sent here from input_directory.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Solar System</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<form action="input_handler.php" method="post">
+Name: <input type="text" name="SOLAR_SYSTEM"><br>
+Temperature (K): <input type="number" name="HEAT"><br>
+Date discovered: <input type="date" name="DATE_DISCOVERED"><br>
+Distance from Earth: <input type="number" name="DISTANCE_FROM_EARTH"><br>
+<!-- date in html is year, month and day database is MMDDYYYY-->
+Classification (MK system): <input type="text" name="CLASSIFICATION"><br>
+<input type="submit">
+</form>
+
+<p><a href="index.php">Back to main menu</a></p>
+
+</body>
+</html>

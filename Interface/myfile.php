@@ -1,29 +1,8 @@
 <html>
  <head>
   <title>PHP<->Orcl Test</title>
-  <style type="text/css">
-  body {
-    padding-left: 11em;
-    font-family: Consolas, monaco, monospace;
-	font-size: 24px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 26.4px;
-    color: purple;
-    background-color: #d8da3d }
-    </style>
+   <link href="style.css" rel="stylesheet">
  </head>
-
- <body>
-First name:<br>
-  <input type="text" name="firstname" value="Mickey">
-  <br>
-  Last name:<br>
-  <input type="text" name="lastname" value="Mouse">
-  <br><br>
-  <input type="submit" value="Submit">
- 
  <?php 
 	 //test
 	 echo "<p>Hello World</p>"; 
