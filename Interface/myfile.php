@@ -3,6 +3,7 @@
   <title>PHP<->Orcl Test</title>
    <link href="style.css" rel="stylesheet">
  </head>
+ <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
  <?php 
 	 //test
 	 echo "<p>Hello World</p>"; 
