@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>PHP Live Database Search</title>
-<link href="style.css" rel="stylesheet">
+<link href="search_style.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -32,10 +32,11 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+    <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
     <div class="search-box">
         <input type="text" autocomplete="off" placeholder="Search first name of employees table" />
         <div class="result"></div>
     </div>
-    <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
+    
 </body>
 </html>
