@@ -7,8 +7,12 @@
 		exit;
 		}
 		else {
-		//print "</p>Connected to Oracle!</p>";
+			print "</p>Connected to Oracle!</p>";
 		}
 
+
+		if($_POST['ID'] ){
+
+		}
 
 ?>
