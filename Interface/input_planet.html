@@ -5,17 +5,46 @@
 <head>
 <title>New Planet</title>
   <link href="style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup put", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("search_star.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
+    });
+});
+</script>
 </head>
 <body>
-
-<form action="input_handler.php" method="post">
+<p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
+<form action="input_planet_handler.php" method="post">
 Name: <input type="text" name="NAME"><br>
-Name of star it revolves: <input type="text" name="SOLAR_SYSTEM"><br>
+<!-- Name of star it revolves: <input type="text" name="SOLAR_SYSTEM"><br> -->
 Distance from the star it revolves: <input type="number" name="DISTANCE_FROM_CENTER"><br>
 Mass: <input type="number" name="MASS"><br>
-<input type="submit">
-</form>
 
-<p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
+
+<!-- search box -->
+<div class="search-box">
+        Name of star it revolves: <input type="text" name="SOLAR_SYSTEM" autocomplete="off" placeholder="Find star" />
+        <div class="result"></div>
+    </div>
+    <input type="submit">
+</form>
 </body>
 </html>

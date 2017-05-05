@@ -5,18 +5,46 @@
 <head>
 <title>New Artificial Satellite</title>
  <link href="style.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup put", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("search_planet.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
+    });
+});
+</script>
 </head>
 <body>
-
-<form action="input_artif_sat_handler.php" method="post">
-Name: <input type="text" name="ID"><br>
-Launched by: <input type="text" name="LAUNCHED_BY"><br>
-Date launched: <input type="date" name="DATE_LAUNCHED"><br>
-<!-- date in html is year, month and day, database is MMDDYYYY-->
-Cost: <input type="number" name="COST"><br>
-<input type="submit">
-</form>
-
 <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
+<form name="newartiticialsattelite" method="post" action="input_artif_sat_handler.php">
+Name: <input type="text" name="ID"/><br>
+Distance from the planet it revolves: <input type="number" name="DISTANCE_FROM_CENTER"><br>
+Launched by: <input type="text" name="LAUNCHED_BY"/><br>
+Date launched: <input type="date" name="DATE_LAUNCHED"/><br>
+<!-- date in html is year, month and day, database is MMDDYYYY-->
+Cost: <input type="number" name="COST"/><br>
+<!-- search box -->
+<div class="search-box">
+        Name of planet it revolves: <input type="text" name="ORBITS" autocomplete="off" placeholder="Find planet" />
+        <div class="result"></div>
+    </div>
+<input type="submit" Name="submitArt"/>
+</form>
 </body>
 </html>
