@@ -4,8 +4,15 @@
 <html>
 <head>
 <title>New Moon</title>
-  <link href="style.css" rel="stylesheet">
-
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/main.css">
+    <style type="text/css">
+:root .ad.super,
+:root #header + #content > #left > #rlblock_left,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{ display: none !important; }</style>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -31,17 +38,62 @@ $(document).ready(function(){
 });
 </script>
 </head>
+<body class="subpage">
+
+        <!-- Header -->
+            <header id="header">
+                <div class="inner">
+                    <a href="index.php" class="logo">Yeaple-Betancourt &amp; Voronin</a>
+                    <nav id="nav">
+                        <a href="index.php">Home</a>
+                        <a href="planets.php">Planets</a>
+                        <a href="stars.php">Stars</a>
+                        <a href="satellites.php">Satellite</a>
+                        <a href="login.php">Login</a>
+                    </nav>
+                    <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+                </div>
+            </header>
+            
+
+        <!-- Banner -->
+            <section id="banner">
+                <h1>Input a New Moon</h1>
+                <p>Make sure to give it a good name and tell me what it orbits.</p>
+                            </section>
 <body>
-<p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
+<body>
+<br>
 <form action="input_moon_handler.php" method="post">
-Name: <input type="text" name="ID"><br>
-Mass: <input type="number" name="MASS"><br>
+<div class="6u 12u$(small)">
+    <input type="text" name="ID" placeholder="Name"><br>
+    <input type="number" name="MASS" placeholder="Mass"><br>
+    <br>
 <!-- search box -->
-<div class="search-box">
-        Name of planet it revolves: <input type="text" name="ORBITS" autocomplete="off" placeholder="Find planet" />
-        <div class="result"></div>
-    </div>
-    <input type="submit">
+    <div class="search-box">
+            Name of planet it revolves: <input type="text" name="ORBITS" autocomplete="off" placeholder="Find planet" />
+            <div class="result"></div>
+        </div>
+        <br>
+        <input type="submit">
+</div>
 </form>
+        <!-- Footer -->
+            <footer id="footer">
+                <div class="inner">
+                    <div class="flex">
+                        <div class="copyright">
+                            &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/skel.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
 </body>
 </html>

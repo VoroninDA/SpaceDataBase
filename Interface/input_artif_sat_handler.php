@@ -1,20 +1,30 @@
 <!-- inserts new satellite with classification artitficial and given name -->
+<html>
+ <head>
+  <title></title>
+   <link href="style.css" rel="stylesheet">
+ </head>
+ <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
 <?php
+//toggle error reporting
+	error_reporting(0);
 	// Create connection to Oracle
 		$conn = oci_connect('yeaplebetamn', 'V00672813', 'localhost:20037/xe'); // this is localhost, i.e., jasmine.cs.vcu.edu
 		if (!$conn) {
 		$m = oci_error();
-		echo $m['Oracle connection lost'], "\n";
+		echo $m['ERROR: Oracle connection lost'], "\n";
 		exit;
 		}
 		else {
-			print "</p>Connected to Oracle!</p>";
+			//print "</p>Connected to Oracle!</p>";
 		}
+		date_default_timezone_set('America/New_York');
 
 		$idArtSatInput = $_POST["ID"]; //must be set
 		$distanceInput = $_POST["DISTANCE_FROM_CENTER"];
 		$launchedByInput = $_POST["LAUNCHED_BY"];
-		$dateLaunchedInput = $_POST["DATE_LAUNCHED"];
+		$dateLaunchedInput = strtotime($_POST["DATE_LAUNCHED"]);
+		$dateLaunchedInput = date('j-M-y',$dateLaunchedInput);
 		$costInput = $_POST["COST"];
 		$orbitsInput = $_POST["ORBITS"]; //must be set and match existing value in DB
 
@@ -38,12 +48,12 @@
 				oci_bind_by_name($sqlIDArt, ":idartsat", $idArtSatInput);
 
 				if(oci_execute($sqlIDSat)){
-					echo "inserted into SATELLITE";
+					echo "Successfully inserted into SATELLITE ";
 				}else{
 					echo "ERROR:Unable to insert into SATELLITE";
 				}
 				if(oci_execute($sqlIDArt)){
-					echo "inserted into ARTIFICIAL";
+					echo "and into ARTIFICIAL";
 				}else{
 					echo "ERROR: Unable to insert into ARTIFICIAL";
 				}
@@ -55,6 +65,29 @@
 			echo "ERROR: must input name and planet";
 		}
 
+			$stid = oci_parse($conn, 
+				'SELECT S.ID,S.ORBITS,S.DISTANCE_FROM_CENTER,A.LAUNCHED_BY,A.DATE_LAUNCHED,A.COST 
+				FROM SATELLITE S 
+				INNER JOIN ARTIFICIAL A ON S.ID=A.ID');
+	if (!$stid) {
+	    $e = oci_error($conn);
+	    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+
+	oci_execute($stid);
+	// Fetch the results of the query
+	print "<table border='1'>\n";
+	while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+	    print "<tr>\n";
+	    foreach ($row as $item) {
+	        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+	    }
+	    print "</tr>\n";
+	}
+	print "</table>\n";
+
+
 		oci_close($conn);
 
 ?>
+</html>

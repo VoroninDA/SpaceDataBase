@@ -1,14 +1,22 @@
 <!-- Inserts new planet -->
+<html>
+ <head>
+  <title></title>
+   <link href="style.css" rel="stylesheet">
+ </head>
+ <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
 <?php
+//toggle error reporting
+	error_reporting(0);
 	// Create connection to Oracle
 		$conn = oci_connect('yeaplebetamn', 'V00672813', 'localhost:20037/xe'); // this is localhost, i.e., jasmine.cs.vcu.edu
 		if (!$conn) {
 		$m = oci_error();
-		echo $m['Oracle connection lost'], "\n";
+		echo $m['ERROR: Oracle connection lost'], "\n";
 		exit;
 		}
 		else {
-			print "</p>Connected to Oracle!</p>";
+			//print "</p>Connected to Oracle!</p>";
 		}
 
 		$nameInput = $_POST["NAME"];	//must be set
@@ -33,7 +41,7 @@
 				oci_bind_by_name($sqlPlanetInsert, ":distancefromcenter", $massInput);
 
 				if(oci_execute($sqlStarInsert)){
-					echo "sql executed";
+					echo "Succesfully inserted into PLANET.";
 				}else{
 					echo "ERROR:Unable to execute SQL statement";
 				}
@@ -45,6 +53,26 @@
 			echo "ERROR: must input planet name AND its star";
 		}
 
+	$stid = oci_parse($conn, 'SELECT * FROM PLANET');
+	if (!$stid) {
+	    $e = oci_error($conn);
+	    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+
+	oci_execute($stid);
+	// Fetch the results of the query
+	print "<table border='1'>\n";
+	while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+	    print "<tr>\n";
+	    foreach ($row as $item) {
+	        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+	    }
+	    print "</tr>\n";
+	}
+	print "</table>\n";
+
+
 		oci_close($conn);
 
 ?>
+</html>

@@ -1,14 +1,23 @@
 <!-- inserts new satellite with classification moon and given name -->
+<html>
+ <head>
+  <title></title>
+   <link href="style.css" rel="stylesheet">
+ </head>
+ <p><a href="index.php"><input type="reset" value="Back to main menu"></a></p>
 <?php
+//toggle error reporting
+	error_reporting(0);
+	
 	// Create connection to Oracle
 		$conn = oci_connect('yeaplebetamn', 'V00672813', 'localhost:20037/xe'); // this is localhost, i.e., jasmine.cs.vcu.edu
 		if (!$conn) {
 		$m = oci_error();
-		echo $m['Oracle connection lost'], "\n";
+		echo $m['ERROR: Oracle connection lost'], "\n";
 		exit;
 		}
 		else {
-			print "</p>Connected to Oracle!</p>";
+			//print "</p>Connected to Oracle!</p>";
 		}
 
 		$idMoonInput = $_POST["ID"]; //must be set
@@ -34,12 +43,12 @@
 				oci_bind_by_name($sqlIDMoon, ":idmoon", $idMoonInput);
 
 				if(oci_execute($sqlIDSat)){
-					echo "inserted into SATELLITE";
+					echo "Inserted into SATELLITE ";
 				}else{
 					echo "ERROR:Unable to insert into SATELLITE";
 				}
 				if(oci_execute($sqlIDMoon)){
-					echo "inserted into MOON";
+					echo "and MOON.";
 				}else{
 					echo "ERROR: Unable to insert into MOON";
 				}
@@ -49,8 +58,27 @@
 		}else{
 // TODO: take this away
 			echo "ERROR: must input name and planet";
+			echo "<img src=\"http://i.imgur.com/3o0wQZB.gif\" border=0>";
 		}
 
+		$stid = oci_parse($conn, 'SELECT * FROM SATELLITE WHERE CLASSIFICATION=\'moon\'');
+	if (!$stid) {
+	    $e = oci_error($conn);
+	    trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}
+
+	oci_execute($stid);
+	// Fetch the results of the query
+	print "<table border='1'>\n";
+	while ($row = oci_fetch_array($stid, OCI_ASSOC+OCI_RETURN_NULLS)) {
+	    print "<tr>\n";
+	    foreach ($row as $item) {
+	        print "    <td>" . ($item !== null ? htmlentities($item, ENT_QUOTES) : "&nbsp;") . "</td>\n";
+	    }
+	    print "</tr>\n";
+	}
+	print "</table>\n";
 		oci_close($conn);
 
 ?>
+</html>
