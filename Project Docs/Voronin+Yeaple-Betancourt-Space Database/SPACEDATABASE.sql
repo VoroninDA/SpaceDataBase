@@ -6,7 +6,7 @@ REM SpaceDB.Revolves table has a foreign key to this table.
 CREATE TABLE profiles
 (  
      profName VARCHAR2(25)
-    , passSalt VARCHAR2(30)
+    , passSalt VARCHAR2(32)
     , passwordHash VARCHAR2(40)
     , CONSTRAINT prof_pk
                 PRIMARY KEY (profName)
