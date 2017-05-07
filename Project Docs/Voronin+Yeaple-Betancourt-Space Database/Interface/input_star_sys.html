@@ -1,0 +1,135 @@
+<!-- input form for new solar system/star -->
+<!-- user sent here from input_directory.html -->
+<!DOCTYPE html>
+<html><head>
+		<title>Input a Star</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="assets/css/main.css">
+	<style type="text/css">
+:root .ad.super,
+:root #header + #content > #left > #rlblock_left,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{ display: none !important; }</style>
+</head>
+	<body class="subpage">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.php" class="logo">Yeaple-Betancourt &amp; Voronin</a>
+					<nav id="nav">
+						<a href="index.php">Home</a>
+                        <a href="planets.php">Planets</a>
+                        <a href="stars.php">Stars</a>
+                        <a href="satellites.php">Satellite</a>
+                        <a href="login.php">Login</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
+			
+
+		<!-- Banner -->
+			<section id="banner">
+				<h1>Input a New Star</h1>
+				<p>Make sure to give it a good name and tell me its classification.</p>
+							</section>
+							</body>
+<body>
+
+<form action="input_star_sys_handler.php" method="post">
+<div>
+<div class="6u 12u$(xsmall)">
+<br>
+<input type="text" name="SOLAR_SYSTEM" placeholder="Name (required)"><br>
+<input type="number" name="HEAT" placeholder="Temperature (K)"><br>
+<br>Date discovered:<br>
+<input type="date" name="DATE_DISCOVERED"><br>
+<br>
+<input type="number" name="DISTANCE_FROM_EARTH" placeholder="Distance from Earth"><br>
+<!-- date in html is year, month and day database is MMDDYYYY-->
+<br>
+<input type="text" name="CLASSIFICATION" placeholder="Classification (MK system)"><br>
+<br>Stellar Classification:<br>
+<div class="row uniform">
+<!-- Break -->
+<div class="6u$ 12u$(xsmall)">
+	<div class="select-wrapper">
+		<select name="category" id="category">
+			<option value="">- Spectral Type -</option>
+			<option value="1">O</option>
+			<option value="1">B</option>
+			<option value="1">A</option>
+			<option value="1">F</option>
+			<option value="1">G</option>
+			<option value="1">K</option>
+			<option value="1">M</option>
+			<option value="1">L</option>
+			<option value="1">T</option>
+
+		</select>
+	</div>
+</div>
+<!-- Break -->
+<div class="6u$ 12u$(xsmall)">
+	<div class="select-wrapper">
+		<select name="category" id="category">
+			<option value="">- Spectral subclass -</option>
+			<option value="1">1</option>
+			<option value="1">2</option>
+			<option value="1">3</option>
+			<option value="1">4</option>
+			<option value="1">5</option>
+			<option value="1">6</option>
+			<option value="1">7</option>
+			<option value="1">8</option>
+			<option value="1">9</option>
+
+		</select>
+	</div>
+</div>
+<!-- Break -->
+<div class="6u$ 12u$(xsmall)">
+	<div class="select-wrapper">
+		<select name="category" id="category">
+			<option value="">- Luminosity Class -</option>
+			<option value="1">0</option>
+			<option value="1">Ia</option>
+			<option value="1">Ib</option>
+			<option value="1">II</option>
+			<option value="1">III</option>
+			<option value="1">IV</option>
+			<option value="1">V</option>
+			<option value="1">VI</option>
+			<option value="1">VII</option>
+
+		</select>
+	</div>
+</div>
+</div>
+<br>
+<input type="submit">
+</form>
+</div>
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="flex">
+						<div class="copyright">
+							&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

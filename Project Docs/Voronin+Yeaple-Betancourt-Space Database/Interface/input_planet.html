@@ -1,0 +1,102 @@
+<!-- input form for new planet -->
+<!-- user sent here from input_directory.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Planet</title>
+  <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/main.css">
+    <style type="text/css">
+:root .ad.super,
+:root #header + #content > #left > #rlblock_left,
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle
+{ display: none !important; }</style>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup put", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("search_star.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
+    });
+});
+</script>
+</head>
+<body class="subpage">
+
+        <!-- Header -->
+            <header id="header">
+                <div class="inner">
+                    <a href="index.php" class="logo">Yeaple-Betancourt &amp; Voronin</a>
+                    <nav id="nav">
+                        <a href="index.php">Home</a>
+                        <a href="planets.php">Planets</a>
+                        <a href="stars.php">Stars</a>
+                        <a href="satellites.php">Satellite</a>
+                        <a href="login.php">Login</a>
+                    </nav>
+                    <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+                </div>
+            </header>
+            
+
+        <!-- Banner -->
+            <section id="banner">
+                <h1>Input a New Planet</h1>
+                <p>Make sure to give it a good name and tell me what star it revolves around.</p>
+                            </section>
+<body>
+<body>
+<br>
+<form action="input_planet_handler.php" method="post">
+<input type="text" name="NAME" placeholder="Name"><br>
+<!-- Name of star it revolves: <input type="text" name="SOLAR_SYSTEM"><br> -->
+<input type="number" name="DISTANCE_FROM_CENTER" placeholder="Distance from its orbit"><br>
+<br>
+<input type="number" name="MASS" placeholder="Mass"><br>
+<br>
+
+
+<!-- search box -->
+<div class="search-box">
+        Name of star it revolves: <input type="text" name="SOLAR_SYSTEM" autocomplete="off" placeholder="Find star" />
+        <div class="result"></div>
+    </div>
+    <br>
+    <input type="submit">
+</form>
+        <!-- Footer -->
+            <footer id="footer">
+                <div class="inner">
+                    <div class="flex">
+                        <div class="copyright">
+                            &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/skel.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+</body>
+</html>
